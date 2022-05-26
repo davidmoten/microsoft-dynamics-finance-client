@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+    <modelVersion>4.0.0</modelVersion>
+    <artifactId>microsoft-dynamics-finance-client</artifactId>
+    <name>${project.artifactId}</name>
+    <description>Java client as template for Microsoft Dynamics Finance API</description>
+    <properties>
+        <odata.client.version>0.1.79</odata.client.version>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.target>1.8</maven.compiler.target>
+
+        <jackson.version>2.13.3</jackson.version>
+        <jackson.databind.version>2.13.3</jackson.databind.version>
+        <junit.version>4.13.2</junit.version>
+        <httpclient.version>4.5.13</httpclient.version>
+        <log4j.version>2.17.2</log4j.version>
+        <build.helper.version>3.3.0</build.helper.version>
+
+    </properties>
+    <dependencies>
+
+        <dependency>
+            <groupId>com.github.davidmoten</groupId>
+            <artifactId>odata-client-microsoft-client-builder</artifactId>
+            <version>${odata.client.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.httpcomponents</groupId>
+            <artifactId>httpclient</artifactId>
+            <version>${httpclient.version}</version>
+        </dependency>
+
+        <!-- Test Dependencies -->
+        <dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-slf4j-impl</artifactId>
+            <version>${log4j.version}</version>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>${junit.version}</version>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>com.github.davidmoten</groupId>
+            <artifactId>junit-extras</artifactId>
+            <version>0.4</version>
+            <scope>test</scope>
+        </dependency>
+
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>com.github.davidmoten</groupId>
+                <artifactId>odata-client-maven-plugin</artifactId>
+                <version>${odata.client.version}</version>
+                <executions>
+                    <execution>
+                        <id>generate-client</id>
+                        <phase>generate-sources</phase>
+                        <goals>
+                            <goal>generate</goal>
+                        </goals>
+                        <configuration>
+                            <metadata>src/main/odata/microsoft-dynamics-finance-metadata.xml</metadata>
+                            <schemas>
+                                <schema>
+                                    <namespace>Microsoft.Dynamics.OData.Core.V1</namespace>
+                                    <packageName>microsoft.dynamics.crm.core.v1</packageName>
+                                    <failOnMissingEntitySet>false</failOnMissingEntitySet>
+                                </schema>
+                                <schema>
+                                    <namespace>Microsoft.Dynamics.DataEntities</namespace>
+                                    <packageName>microsoft.dynamics.dataentities</packageName>
+                                    <failOnMissingEntitySet>false</failOnMissingEntitySet>
+                                </schema>
+                            </schemas>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>build-helper-maven-plugin</artifactId>
+                <version>${build.helper.version}</version>
+                <executions>
+                    <execution>
+                        <id>add-source</id>
+                        <phase>generate-sources</phase>
+                        <goals>
+                            <goal>add-source</goal>
+                        </goals>
+                        <configuration>
+                            <sources>
+                                <source>${project.build.directory}/generated-sources/java</source>
+                            </sources>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+</project>
