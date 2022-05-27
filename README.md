@@ -17,3 +17,5 @@ Dynamics allows you to extend the base functionality of the system. When you do 
 
 ## Usage
 See [DynamicsMain.java](/src/test/java/com/github/davidmoten/ms/dynamics/DynamicsMain.java) for usage.
+
+Once confirmed as working I'll probably deploy this to Maven Central.
