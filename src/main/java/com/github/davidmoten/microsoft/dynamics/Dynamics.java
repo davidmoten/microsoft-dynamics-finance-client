@@ -11,6 +11,7 @@ import com.github.davidmoten.microsoft.client.builder.MicrosoftClientBuilder.Use
 import com.github.davidmoten.odata.client.ClientException;
 import com.github.davidmoten.odata.client.Context;
 import com.github.davidmoten.odata.client.HasContext;
+import com.github.davidmoten.odata.client.PathStyle;
 
 import microsoft.dynamics.crm.core.v1.schema.SchemaInfo;
 
@@ -28,12 +29,18 @@ public final class Dynamics {
 
         private final Class<T> serviceCls;
         private Optional<String> baseUrl = Optional.empty();
+        private PathStyle pathStyle = PathStyle.IDENTIFIERS_AS_SEGMENTS;
 
         Builder(Class<T> serviceClass) {
             Preconditions.checkNotNull(serviceClass);
             this.serviceCls = serviceClass;
         }
 
+        public Builder<T> pathStyle(PathStyle pathStyle) {
+            this.pathStyle = pathStyle;
+            return this;
+        }
+        
         /**
          * Expected URL is like https://SOLUTION.crm4.dynamics.com.
          * @param baseUrl
@@ -54,7 +61,7 @@ public final class Dynamics {
         public Builder3(Builder<T> b) {
             this.b = b;
         }
-
+        
         public MicrosoftClientBuilder.Builder5<T> basicAuthentication(
                 Supplier<UsernamePassword> usernamePassword) {
             return createBuilder().basicAuthentication(usernamePassword);
@@ -82,6 +89,7 @@ public final class Dynamics {
                     .baseUrl(b.baseUrl.get()) //
                     .creator(creator) //
                     .addSchema(SchemaInfo.INSTANCE) //
+                    .pathStyle(b.pathStyle) //
                     .build();
         }
     }
