@@ -1,6 +1,7 @@
 package com.github.davidmoten.ms.dynamics;
 
 import com.github.davidmoten.microsoft.dynamics.Dynamics;
+import com.github.davidmoten.odata.client.PathStyle;
 
 import microsoft.dynamics.dataentities.container.Resources;
 
@@ -11,9 +12,10 @@ public class DynamicsMain {
         // build client
         Resources client = Dynamics //
                 .service(Resources.class) //
-                .baseUrl("https://SOLUTION.api.crm4.dynamics.com/api/data/v9.1/") //
+                .pathStyle(PathStyle.IDENTIFIERS_IN_ROUND_BRACKETS) //
+                .baseUrl("https://SOLUTION.axcloud.dynamics.com/data") //
                 .tenantName("TENANT_NAME") //
-                .resource("https://SOLUTION.crm4.dynamics.com") //
+                .resource("https://SOLUTION.axcloud.dynamics.com") //
                 .clientId("CLIENT_ID") //
                 .clientSecret("CLIENT_SECRET") //
                 .build();
