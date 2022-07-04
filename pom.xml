@@ -23,7 +23,7 @@
         <jackson.databind.version>2.13.3</jackson.databind.version>
         <junit.version>4.13.2</junit.version>
         <httpclient.version>4.5.13</httpclient.version>
-        <log4j.version>2.17.2</log4j.version>
+        <log4j.version>2.18.0</log4j.version>
         <build.helper.version>3.3.0</build.helper.version>
 
     </properties>
