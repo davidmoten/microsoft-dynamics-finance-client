@@ -3,7 +3,7 @@
 [![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.github.davidmoten/microsoft-dynamics-finance-client-runtime/badge.svg?style=flat)](https://maven-badges.herokuapp.com/maven-central/com.github.davidmoten/microsoft-dynamics-finance-client)<br/>
 [![codecov](https://codecov.io/gh/davidmoten/microsoft-dynamics-finance-client/branch/master/graph/badge.svg)](https://codecov.io/gh/davidmoten/microsoft-dynamics-finance-client)<br/>
 
-This is a java client for the Microsoft Dynamics Finance and Operations API and is built using [odata-client](https://github.com/davidmoten/odata-client).
+This is a java client for the Microsoft Dynamics Finance and Operations API and is built using [odata-client](https://github.com/davidmoten/odata-client). As each organization has their own extensions to the API it makes sense that each organization builds their own client. 
 
 ## Getting started 
 ```
