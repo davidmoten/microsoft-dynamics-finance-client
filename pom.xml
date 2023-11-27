@@ -22,7 +22,7 @@
         <junit.version>4.13.2</junit.version>
         <httpclient.version>4.5.14</httpclient.version>
         <log4j.version>2.22.0</log4j.version>
-        <build.helper.version>3.4.0</build.helper.version>
+        <build.helper.version>3.5.0</build.helper.version>
 
     </properties>
     <dependencies>
